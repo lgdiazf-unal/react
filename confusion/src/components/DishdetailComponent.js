@@ -26,18 +26,11 @@ class Dishdetail extends Component{
         let comments = <div></div>
         
         if (this.props.dish.comments != null){
-            
             comments = this.props.dish.comments.map(comment=>{
-                let  mydate = new Date(comment.date)
-                var month = mydate.toLocaleString('en-us', { month: 'short' }); 
-                var year = mydate.getFullYear(); 
-                var day = mydate.getDay();
-
-                console.log(month,year)
                 return (
                     <li>
                         <li>{comment.comment}</li>
-                        <li className="m-3">-- { comment.author} , {month} {day} , {year}   </li>
+                        <li className="m-3">-- {comment.author} {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}   </li>
                     </li>
                     
                 );
@@ -53,7 +46,7 @@ class Dishdetail extends Component{
         if (this.props.dish != null){
             
             return(
-                <div >
+                <div  className="container">
                     <div className="row">
                         <div className="col-12 col-md-5 m-1">
                             {this.renderDish(this.props.dish)}
@@ -62,7 +55,6 @@ class Dishdetail extends Component{
                         <div className="col-12 col-md-5 m-1">
                             <h4>Comments</h4>
                             <ul class = "list-unstyled">
-
                                 {this.renderComments()}
                             </ul>
                         </div>

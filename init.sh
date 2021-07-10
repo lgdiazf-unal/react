@@ -1,0 +1,1 @@
+docker run -it --rm  -p "3000:3000" -v /home/luis/Documents/coursera/react:/mnt react:0.0.2  bash
